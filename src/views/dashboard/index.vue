@@ -5,10 +5,18 @@
 </template>
 
 <script>
+const mixins = {
+  created() {
+    console.log('我是混入对象的create')
+  },
+  mounted() {
+    console.log('我是混入对象的mounted')
+  }
+}
 import { mapGetters } from 'vuex'
-
 export default {
   name: 'Dashboard',
+  mixins: [mixins],
   computed: {
     ...mapGetters([
       'name'

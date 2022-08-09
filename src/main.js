@@ -12,9 +12,22 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+import components from '@/components/index'
+
 import '@/icons' // icon
 import '@/permission' // permission control
+import * as directives from '@/directives/index'
 
+import Print from 'vue-print-nb'
+// 引入过滤器
+import * as filters from '@/filters/index'
+// console.log(directives)
+for (const key in directives) {
+  Vue.directive(key, directives[key])
+}
+for (const filtersKey in filters) {
+  Vue.filter(filtersKey, filters[filtersKey])
+}
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -28,6 +41,9 @@ import '@/permission' // permission control
 //   mockXHR()
 // }
 
+Vue.use(components)
+
+Vue.use(Print)
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
